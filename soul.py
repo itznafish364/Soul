@@ -136,7 +136,7 @@ async def attack(update: Update, context: CallbackContext):
     if not ip.startswith(valid_ip_prefixes):
         await context.bot.send_message(chat_id=chat_id, text="*❌ Invalid IP address! Please use an IP with a valid prefix.*", parse_mode='Markdown')
         return
-    cooldown_period = 60
+    cooldown_period = 120
     current_time = datetime.now()
     if user_id in cooldown_dict:
         time_diff = (current_time - cooldown_dict[user_id]).total_seconds()
@@ -413,7 +413,7 @@ async def is_user_allowed(user_id):
     
 def get_status(active_inactive,):
     # Get the current time
-    current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S IST")
+    current_time = datetime.now().strftime("%H:%M:%S IST")
 
     # Create the status message with dynamic subscription status
     server_status = "🟢 SERVERS AVAILABLE"  # Automatically set server status to AVAILABLE
